@@ -5,3 +5,7 @@ This is for our team python project
 ```python
 print("Hello World")
 ```
+Team 10:
+* Barry Wen
+* Wenhao Xie
+* Zhihan Li

@@ -35,7 +35,9 @@ def index():
     print('processing / route')
     return f'''
         <h1>GPT Demo</h1>
-        <a href="{url_for('gptdemo')}">Ask questions to GPT</a>
+        <a href="/gptdemo">Ask questions to GPT</a>
+        <h2>Wenhao Xie</h2>
+        <a href="/time">Convert time of any city in the world to eastern time GPT
     '''
 
 
@@ -66,6 +68,52 @@ def gptdemo():
             <p><input type=submit value="get response">
         </form>
         '''
+
+
+@app.route('/time', methods=['GET', 'POST'])
+def time():
+    ''' handle a get request by sending a form 
+        and a post request by returning the GPT response
+    '''
+    if request.method == 'POST':
+        prompt = request.form['prompt']
+        answer = gptAPI.get_eastern_time(prompt)
+        return f'''
+        <h2>Convert Time</h2>
+        <pre style="bgcolor:yellow">{prompt}</pre>
+        <hr>
+        Here is the answer in text mode:
+        <div style="border:thin solid black">{answer}</div>
+        Here is the answer in "pre" mode:
+        <pre style="border:thin solid black">{answer}</pre>
+        <a href={url_for('time')}> Try another city</a>
+        '''
+    else:
+        return '''
+        <h2>Time Convert App</h2>
+        Please enter your local time below(e.g. Tokyo 8am Friday)
+        <form method="post">
+            <textarea name="prompt"></textarea>
+            <p><input type=submit value="get response">
+        </form>
+        '''
+
+
+@app.route('/about')
+def about():
+    return '''
+    <h2> Wenhao Xie </h2>
+    <p> I added a method get_eastern_time(time), which accept a string of time 'e.g. Tokyo 8am Friday', 
+     and ask chatgpt to convert it to eastern time.</p>
+    '''
+
+
+@app.route('/team')
+def team():
+    return '''
+    <h2> Wenhao Xie </h2>
+    <p> 1st year MS4 student from China. I am the captain of the team.</p> 
+    '''
 
 
 if __name__ == '__main__':

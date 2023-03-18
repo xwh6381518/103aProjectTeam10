@@ -46,6 +46,21 @@ class GPT():
         response = completion.choices[0].text
         return response
 
+    # this method takes in the prompt and send it to the openAI server
+    # and then return the response from chatGPT
+    def get_eastern_time(self, time):
+        completion = openai.Completion.create(
+            engine=self.model_engine,
+            prompt='convert' + time + 'to eastern time',
+            max_tokens=1024,
+            n=1,
+            stop=None,
+            temperature=0.8,
+        )
+
+        eastern_time = completion.choices[0].text
+        return eastern_time
+
 
 if __name__ == '__main__':
     '''

@@ -112,7 +112,8 @@ def about():
 def team():
     return '''
     <h2> Wenhao Xie </h2>
-    <p> 1st year MS4 student from China. I am the captain of the team.</p> 
+    <p> 1st year MS4 student from China. I am the captain of the team and I wrote the /time page
+    as well as my parts in /about and team page</p> 
     '''
 
 

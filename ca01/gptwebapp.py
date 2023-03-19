@@ -102,18 +102,38 @@ def time():
 @app.route('/about')
 def about():
     return '''
+    <body bgcolor="#f3f3f3">
+    <h1> This is the first creative assignment webpage of CS103A Spring Team 10.</h1>
+    <h2> Our team created three methods for users to interact with gpt.</h2>
+    <br/><br/>
     <h2> Wenhao Xie </h2>
-    <p> I added a method get_eastern_time(time), which accept a string of time 'e.g. Tokyo 8am Friday', 
+    <p div style=font-size:22px> I added a method get_eastern_time(time), which accept a string of time 'e.g. Tokyo 8am Friday', 
      and ask chatgpt to convert it to eastern time.</p>
+
+    <h2> Zhihan Li </h2>
+    <p div style=font-size:22px> I added a method called get_local_temperature(location). It take user input string as location 'e.g. Columbus',
+    and ask chatgpt the current temperatuer of this location.</p>
+
+    </body>
     '''
 
 
 @app.route('/team')
 def team():
     return '''
+    <body bgcolor="#f3f3f3">
+    <h1> CS103A Team 10</h>
+    <br/><br/>
+    
     <h2> Wenhao Xie </h2>
-    <p> 1st year MS4 student from China. I am the captain of the team and I wrote the /time page
+    <p div style=font-size:22px> 1st year MS4 student from China. I am the captain of the team and I wrote the /time page
     as well as my parts in /about and team page</p> 
+
+    <h2> Zhihan Li </h2>
+    <p div style=font-size:22px> 1st year MS3 student. I made the /temp page and 
+    I wrote the short introduction on both /about and /team page.</p>
+
+    </body>
     '''
 
 

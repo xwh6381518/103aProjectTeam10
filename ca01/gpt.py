@@ -61,6 +61,20 @@ class GPT():
         eastern_time = completion.choices[0].text
         return eastern_time
 
+    def get_local_temperature(self, location):
+        ''' This method will get user input as location, and send
+          a prompt to chatgpt sever and return the response from chatgpt.'''
+        completion = openai.Completion.create(
+            engine=self.model_engine,
+            prompt='Get current temperature at ' + location + 'in Celsius degree.',
+            max_tokens=1024,
+            n=1,
+            stop=None,
+            temperature=0.8,
+        )
+        local_temp = completion.choices[0].text
+        return local_temp
+    
 
 if __name__ == '__main__':
     '''

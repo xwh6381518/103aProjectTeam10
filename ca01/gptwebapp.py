@@ -105,6 +105,7 @@ def time():
             <textarea name="prompt"></textarea>
             <p><input type=submit value="get response">
         </form>
+        <br/><br/><a href="/">Back</a>
         '''
 
 @app.route('/temp', methods=['GET', 'POST'])
@@ -133,6 +134,9 @@ def temp():
             <textarea name="prompt"></textarea>
             <p><input type=submit value="get response">
         </form>
+
+        
+        <br/><br/><a href="/">Back</a>
         '''
 
 @app.route('/about')
@@ -150,6 +154,9 @@ def about():
     <p div style=font-size:22px> I added a method called get_local_temperature(location). It take user input string as location 'e.g. Columbus',
     and ask chatgpt the current temperatuer of this location.</p>
 
+    
+
+    <br/><br/><a href="/">Back</a>
     </body>
     '''
 
@@ -169,6 +176,9 @@ def team():
     <p div style=font-size:22px> 1st year MS3 student. I made the /temp page and 
     I wrote the short introduction on both /about and /team page.</p>
 
+    
+    
+    <br/><br/><a href="/">Back</a>
     </body>
     '''
 

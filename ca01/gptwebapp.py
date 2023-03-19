@@ -34,10 +34,16 @@ def index():
     ''' display a link to the general query page '''
     print('processing / route')
     return f'''
-        <h1>GPT Demo</h1>
-        <a href="/gptdemo">Ask questions to GPT</a>
+        <h1>Team 10 CA01</h1> <br/><br/>
+        <h2>GPT Demo</h2>
+        <a href="/gptdemo">Ask questions to GPT</a><br/><br/>
         <h2>Wenhao Xie</h2>
-        <a href="/time">Convert time of any city in the world to eastern time GPT
+        <a href="/time">Convert time of any city in the world to eastern time GPT</a>
+        <br/><br/>
+        <h2>Zhihan Li</h2>
+        <a href="/temp"> Get local temperature from ChatGPT.</a>
+        <br/><br/>
+
     '''
 
 
@@ -98,6 +104,33 @@ def time():
         </form>
         '''
 
+@app.route('/temp', methods=['GET', 'POST'])
+def temp():
+    ''' handle a get request by sending a form 
+        and a post request by returning the GPT response
+    '''
+    if request.method == 'POST':
+        prompt = request.form['prompt']
+        answer = gptAPI.get_local_temperature(prompt)
+        return f'''
+        <h2>Get current temperature of entered location</h2>
+        <pre style="bgcolor:yellow">{prompt}</pre>
+        <hr>
+        Here is the answer in text mode:
+        <div style="border:thin solid black">{answer}</div>
+        Here is the answer in "pre" mode:
+        <pre style="border:thin solid black">{answer}</pre>
+        <a href={url_for('temp')}> Try another city</a>
+        '''
+    else:
+        return '''
+        <h2>Local Temperature App</h2>
+        Please enter a location/city where you want to know it current temperature: (e.g. Waltham)
+        <form method="post">
+            <textarea name="prompt"></textarea>
+            <p><input type=submit value="get response">
+        </form>
+        '''
 
 @app.route('/about')
 def about():
@@ -124,7 +157,7 @@ def team():
     <body bgcolor="#f3f3f3">
     <h1> CS103A Team 10</h>
     <br/><br/>
-    
+
     <h2> Wenhao Xie </h2>
     <p div style=font-size:22px> 1st year MS4 student from China. I am the captain of the team and I wrote the /time page
     as well as my parts in /about and team page</p> 

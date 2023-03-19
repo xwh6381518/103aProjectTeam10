@@ -46,7 +46,9 @@ def index():
         <h2>Zhihan Li</h2>
         <a href="/temp"> Get local temperature from ChatGPT.</a>
         <br/><br/>
-
+        <h2>Barry Wen</h2>
+        <a href="/currency">Convert a currency to another</a>
+        <br/><br/>
     '''
 
 
@@ -108,6 +110,7 @@ def time():
         <br/><br/><a href="/">Back</a>
         '''
 
+
 @app.route('/temp', methods=['GET', 'POST'])
 def temp():
     ''' handle a get request by sending a form 
@@ -139,6 +142,40 @@ def temp():
         <br/><br/><a href="/">Back</a>
         '''
 
+
+@app.route('/currency', methods=['GET', 'POST'])
+def currency():
+    ''' handle a get request by sending a form 
+        and a post request by returning the GPT response
+    '''
+    if request.method == 'POST':
+        from_currency = request.form['from']
+        amount = request.form['amount']
+        to_currency = request.form['to']
+        answer = gptAPI.currency_convertor(from_currency, amount, to_currency)
+        return f'''
+        <h1>Currency Convertor</h1>
+        <pre style="bgcolor:yellow">{answer}</pre>
+        <hr>
+        Here is the answer in text mode:
+        <div style="border:thin solid black">{answer}</div>
+        Here is the answer in "pre" mode:
+        <pre style="border:thin solid black">{answer}</pre>
+        <a href={url_for('currency')}>Try another currency</a>
+        '''
+    else:
+        return '''
+        <h1>Currency Convertor</h1>
+        Enter your query below
+        <form method="post">
+            <textarea name="from">From currency: </textarea>
+            <textarea name="amount">Amount: </textarea>
+            <textarea name="to">To currency: </textarea>
+            <p><input type=submit value="get response">
+        </form>
+        '''
+
+
 @app.route('/about')
 def about():
     return '''
@@ -154,7 +191,9 @@ def about():
     <p div style=font-size:22px> I added a method called get_local_temperature(location). It take user input string as location 'e.g. Columbus',
     and ask chatgpt the current temperatuer of this location.</p>
 
-    
+    <h2> Barry Wen </h2>
+    <p div style=font-size:22px> I added a method called currency_convertor(from_currency, amount, to_currency). 
+    It takes three user inputs to help user convert the currency to another one by chatGPT.</p>
 
     <br/><br/><a href="/">Back</a>
     </body>
@@ -176,7 +215,9 @@ def team():
     <p div style=font-size:22px> 1st year MS3 student. I made the /temp page and 
     I wrote the short introduction on both /about and /team page.</p>
 
-    
+    <h2> Barry Wen </h2>
+    <p div style=font-size:22px> 1st year MS4 student. BS in Real Estate and MS in Computer Science. I am a member of Team 10. 
+    I wrote the /currency page and my part in /about and /team page.</p>
     
     <br/><br/><a href="/">Back</a>
     </body>

@@ -74,7 +74,16 @@ class GPT():
         )
         local_temp = completion.choices[0].text
         return local_temp
-    
+
+    # Barry Wen
+    # this method takes in the prompt (currency, amount, another currency) and send it to the openAI server
+    # and then return the converted amount of the later currency from chatGPT
+    def currency_convertor(self, from_currency, amount, to_currency):
+        prompt = 'please help me convert ' + amount + \
+            " of " + from_currency + " to " + to_currency
+        converted_money = self.getResponse(prompt)
+        return converted_money
+
 
 if __name__ == '__main__':
     '''

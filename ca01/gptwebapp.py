@@ -36,6 +36,7 @@ def index():
     return f'''
         <h1>Team 10 CA01</h1> 
         <h2><a href="/about">About</a></h2>
+        <h2><a href="/team">Team 10</a></h2>
         <br/><br/>
         <h2>GPT Demo</h2>
         <a href="/gptdemo">Ask questions to GPT</a><br/><br/>

@@ -34,7 +34,9 @@ def index():
     ''' display a link to the general query page '''
     print('processing / route')
     return f'''
-        <h1>Team 10 CA01</h1> <br/><br/>
+        <h1>Team 10 CA01</h1> 
+        <h2><a href="/about">About</a></h2>
+        <br/><br/>
         <h2>GPT Demo</h2>
         <a href="/gptdemo">Ask questions to GPT</a><br/><br/>
         <h2>Wenhao Xie</h2>

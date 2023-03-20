@@ -34,6 +34,7 @@ def index():
     ''' display a link to the general query page '''
     print('processing / route')
     return f'''
+        <body bgcolor="#ffffe0">
         <h1>Team 10 CA01</h1> 
         <h2><a href="/about">About</a></h2>
         <h2><a href="/team">Team 10</a></h2>
@@ -49,6 +50,7 @@ def index():
         <h2>Barry Wen</h2>
         <a href="/currency">Convert a currency to another</a>
         <br/><br/>
+        </body>
     '''
 
 
@@ -102,7 +104,9 @@ def time():
     else:
         return '''
         <h2>Time Convert App</h2>
+        <p div style=font-size:22px>
         Please enter your local time below(e.g. Tokyo 8am Friday)
+        </p>
         <form method="post">
             <textarea name="prompt"></textarea>
             <p><input type=submit value="get response">
@@ -120,26 +124,29 @@ def temp():
         prompt = request.form['prompt']
         answer = gptAPI.get_local_temperature(prompt)
         return f'''
+        <body bgcolor="#F0FFF0">
         <h2>Get current temperature of entered location</h2>
-        <pre style="bgcolor:yellow">{prompt}</pre>
-        <hr>
-        Here is the answer in text mode:
-        <div style="border:thin solid black">{answer}</div>
-        Here is the answer in "pre" mode:
-        <pre style="border:thin solid black">{answer}</pre>
+        <pre style="bgcolor:yellow;font-size:20px">{prompt}</pre>
+        <p div style=font-size:22px>
+        Here is the answer from ChatGPT:
+        </p>
+        <div style="border:thin solid black;font-size:20px">{answer}</div>
         <a href={url_for('temp')}> Try another city</a>
+        </body>
         '''
     else:
         return '''
+        <body bgcolor="#F0FFF0">
         <h2>Local Temperature App</h2>
+        <p div style=font-size:22px>
         Please enter a location/city where you want to know it current temperature: (e.g. Waltham)
+        </p>
         <form method="post">
             <textarea name="prompt"></textarea>
             <p><input type=submit value="get response">
-        </form>
-
-        
+        </form>     
         <br/><br/><a href="/">Back</a>
+        </body>
         '''
 
 
@@ -166,20 +173,23 @@ def currency():
     else:
         return '''
         <h1>Currency Convertor</h1>
+        <p div style=font-size:20px>
         Enter your query below
+        </p>
         <form method="post">
             <textarea name="from">From currency: </textarea>
             <textarea name="amount">Amount: </textarea>
             <textarea name="to">To currency: </textarea>
             <p><input type=submit value="get response">
         </form>
+        <br/><br/><a href="/">Back</a>
         '''
 
 
 @app.route('/about')
 def about():
     return '''
-    <body bgcolor="#f3f3f3">
+    <body bgcolor="#C1EEC1">
     <h1> This is the first creative assignment webpage of CS103A Spring Team 10.</h1>
     <h2> Our team created three methods for users to interact with gpt.</h2>
     <br/><br/>

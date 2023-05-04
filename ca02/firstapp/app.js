@@ -9,6 +9,7 @@ const toDoRouter = require("./routes/todo");
 const weatherRouter = require("./routes/weather");
 const gptRouter = require("./routes/gpt");
 const moneyRouter = require("./routes/moneyRoutes");
+const tempRouter = require("./routes/temp");
 
 const User = require("./models/User");
 
@@ -112,6 +113,7 @@ app.use(toDoRouter);
 app.use(weatherRouter);
 app.use(gptRouter);
 app.use(moneyRouter);
+app.use(tempRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

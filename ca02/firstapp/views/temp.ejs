@@ -1,0 +1,42 @@
+<div class="container my-5">
+    <h1 class="display-4 my-title"><b>Temperature Prediction App</b></h1>
+    <h4>
+        Please enter a location: (e.g. Waltham), it will predict the current temperature of this location.
+    </h4>
+    <form action="/temp" method="post">
+        <div class="mb-3">
+            <label for="location" class="form-label fs-4 bg-success-subtle">Location:</label>
+            <textarea type="text" class="form-control" name="location" id="location" aria-describedby="location"
+                rows="10"></textarea>
+        </div>
+        <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+</div>
+<div class="table-responsive">
+    <table class="table table-striped table-hover fs-6 table-bordered">
+        <thead>
+            <tr>
+                <th>Delete</th>
+                <th>Prompt</th>
+                <th>Answer</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% tempItems.forEach(temp=> { %>
+                <tr>
+                    <td>
+                        <a href="/temp/remove/<%=temp._id %>">
+                            <i class="bi bi-trash"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <pre><%= temp.prompt %></pre>
+                    </td>
+                    <td>
+                        <pre><%= temp.answer %></pre>
+                    </td>                    
+                </tr>
+                <% }) %>
+        </tbody>
+    </table>
+</div>

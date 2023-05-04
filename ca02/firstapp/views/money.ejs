@@ -1,0 +1,46 @@
+<div class="container my-5">
+  <h1 class="display-4 my-title"><b>Currency Convert App</b></h1>
+  <p>
+    Please enter your currencies and amount below (e.g. USD, CAD)
+  </p>
+  <form action="/money" method="post">
+    <div class="mb-3">
+      <label for="first" class="form-label">From:</label>
+      <input type="text" name="first" id="inputFirst" placeholder="first currency" autofocus />
+      <label for="second" class="form-label">to:</label>
+      <input type="text" name="second" id="inputSecond" placeholder="second currency" />
+      <br>
+      <label for="amount" class="form-label">Amount:</label>
+      <input type="number" name="amount" id="inputAmount" placeholder="amount" />
+    </div>
+    <button type="submit" class="btn btn-primary">Convert</button>
+  </form>
+</div>
+<div class="table-responsive">
+  <table class="table table-striped table-hover fs-6 table-bordered">
+    <thead>
+      <tr>
+        <th>Prompt</th>
+        <th>Answer</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% gptItems.forEach(gpt=> { %>
+      <tr>
+        <td>
+          <pre><%= gpt.prompt %></pre>
+        </td>
+        <td>
+          <pre><%= gpt.answer %></pre>
+        </td>
+        <td>
+          <a href="/gpt/remove/<%=gpt._id %>">
+            <i class="bi bi-trash"></i>
+          </a>
+        </td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>

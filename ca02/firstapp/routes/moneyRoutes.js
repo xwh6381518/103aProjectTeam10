@@ -1,9 +1,16 @@
-//route for gpt
+//  # Barry Wen
+//     # this method takes in the prompt (currency, amount, another currency) and send it to the openAI server
+//     # and then return the converted amount of the later currency from chatGPT
+//     def currency_convertor(self, from_currency, amount, to_currency):
+//         prompt = 'please help me convert ' + amount + \
+//             " of " + from_currency + " to " + to_currency
+//         converted_money = self.getResponse(prompt)
+//         return converted_money
+
+//route for money converter
 const express = require("express");
 const router = express.Router();
 const GPT = require("../models/gpt");
-const User = require("../models/User");
-const mongoose = require("mongoose");
 const { Configuration, OpenAIApi } = require("openai");
 
 // Configuration
@@ -20,16 +27,18 @@ isLoggedIn = (req, res, next) => {
   }
 };
 
-// show all gpt queries
-router.get("/gpt", isLoggedIn, async (req, res, next) => {
+// render currency convert page
+router.get("/money", isLoggedIn, async (req, res, next) => {
   const gptItems = await GPT.find({ userId: req.user._id });
-  res.render("gpt", { user: req.user, gptItems });
+  res.render("money", { user: req.user, gptItems });
 });
 
-// add a new gpt query
-router.post("/gpt", async (req, res) => {
+// post currency convert query
+router.post("/money", async (req, res) => {
   try {
-    let prompt = "convert" + JSON.stringify(req.body) + "into eastern time";
+    const { first, second } = req.body;
+    const amount = parseFloat(req.body.amount);
+    let prompt = `Please help me convert ${amount} ${first} to ${second}`;
     console.log("prompt=", prompt);
     const response = await openai.createCompletion({
       model: "text-davinci-003",
@@ -40,12 +49,14 @@ router.post("/gpt", async (req, res) => {
       stop: null,
     });
     let gptItem = new GPT({
-      prompt: "convert" + JSON.stringify(req.body) + "into eastern time",
+      prompt: prompt,
       answer: response.data.choices[0].text,
       userId: req.user._id,
     });
     await gptItem.save();
-    return res.render("gptResponse", { answer: response.data.choices[0].text });
+    return res.render("moneyResponse", {
+      answer: response.data.choices[0].text,
+    });
   } catch (error) {
     return res.status(400).json({
       success: false,
@@ -57,9 +68,9 @@ router.post("/gpt", async (req, res) => {
 });
 
 // remove a gpt query
-router.get("/gpt/remove/:gptId", isLoggedIn, async (req, res) => {
+router.get("/money/remove/:gptId", isLoggedIn, async (req, res) => {
   await GPT.deleteOne({ _id: req.params.gptId });
-  res.redirect("/gpt");
+  res.redirect("/money");
 });
 
 module.exports = router;

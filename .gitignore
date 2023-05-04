@@ -133,3 +133,9 @@ secret*
 
 #DS_Store
 .DS_Store
+
+# startup
+startup.sh
+
+# node_modules
+node_modules

@@ -1,42 +1,42 @@
+<!-- Wenhao Xie -->
 <div class="container my-5">
-    <h1 class="display-4 my-title"><b>Time Convert App</b></h1>
-    <p>
-        Please enter your local time below(e.g. Tokyo 8am Friday)
-    </p>
-    <form action="/gpt" method="post">
-        <div class="mb-3">
-            <label for="time" class="form-label">Time:</label>
-            <textarea type="text" class="form-control" name="time" id="time" aria-describedby="time"
-                rows="10"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+  <h1 class="display-4 my-title"><b>Time Convert App</b></h1>
+  <p>
+    Please enter your local time below(e.g. Tokyo 8am Friday)
+  </p>
+  <form action="/gpt" method="post">
+    <div class="mb-3">
+      <label for="time" class="form-label">Time:</label>
+      <textarea type="text" class="form-control" name="time" id="time" aria-describedby="time" rows="10"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
 </div>
 <div class="table-responsive">
-    <table class="table table-striped table-hover fs-6 table-bordered">
-        <thead>
-            <tr>
-                <th>Prompt</th>
-                <th>Answer</th>
-                <th>delete</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% gptItems.forEach(gpt=> { %>
-                <tr>
-                    <td>
-                        <pre><%= gpt.prompt %></pre>
-                    </td>
-                    <td>
-                        <pre><%= gpt.answer %></pre>
-                    </td>
-                    <td>
-                        <a href="/gpt/remove/<%=gpt._id %>">
-                            <i class="bi bi-trash"></i>
-                        </a>
-                    </td>
-                </tr>
-                <% }) %>
-        </tbody>
-    </table>
+  <table class="table table-striped table-hover fs-6 table-bordered">
+    <thead>
+      <tr>
+        <th>Prompt</th>
+        <th>Answer</th>
+        <th>delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% gptItems.forEach(gpt=> { %>
+      <tr>
+        <td>
+          <pre><%= gpt.prompt %></pre>
+        </td>
+        <td>
+          <pre><%= gpt.answer %></pre>
+        </td>
+        <td>
+          <a href="/gpt/remove/<%=gpt._id %>">
+            <i class="bi bi-trash"></i>
+          </a>
+        </td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
 </div>

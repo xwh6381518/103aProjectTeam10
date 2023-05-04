@@ -1,13 +1,6 @@
-//  # Barry Wen
-//     # this method takes in the prompt (currency, amount, another currency) and send it to the openAI server
-//     # and then return the converted amount of the later currency from chatGPT
-//     def currency_convertor(self, from_currency, amount, to_currency):
-//         prompt = 'please help me convert ' + amount + \
-//             " of " + from_currency + " to " + to_currency
-//         converted_money = self.getResponse(prompt)
-//         return converted_money
+// Barry Wen
 
-//route for money converter
+// Route for money converter
 const express = require("express");
 const router = express.Router();
 const GPT = require("../models/gpt");

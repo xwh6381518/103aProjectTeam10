@@ -138,4 +138,4 @@ secret*
 startup.sh
 
 # node_modules
-/ca02/firstapp/node_modules
+node_modules
